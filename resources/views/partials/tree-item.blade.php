@@ -41,7 +41,7 @@
 
     @if($hasChildren && $isExpanded)
         @foreach($item['children'] as $child)
-            @include('ld-tree-view::partials.tree-item', ['item' => $child, 'level' => $level + 1])
+            @include('sb-tree-view::partials.tree-item', ['item' => $child, 'level' => $level + 1])
         @endforeach
     @endif
 </div>

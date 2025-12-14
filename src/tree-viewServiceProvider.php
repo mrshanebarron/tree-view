@@ -11,14 +11,14 @@ class tree-viewServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/ld-tree-view.php', 'ld-tree-view');
+        $this->mergeConfigFrom(__DIR__ . '/../config/sb-tree-view.php', 'sb-tree-view');
     }
 
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ld-tree-view');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-tree-view');
 
-        Livewire::component('ld-tree-view', tree-view::class);
+        Livewire::component('sb-tree-view', tree-view::class);
 
         $this->loadViewComponentsAs('ld', [
             Bladetree-view::class,
@@ -26,12 +26,12 @@ class tree-viewServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/ld-tree-view.php' => config_path('ld-tree-view.php'),
-            ], 'ld-tree-view-config');
+                __DIR__ . '/../config/sb-tree-view.php' => config_path('sb-tree-view.php'),
+            ], 'sb-tree-view-config');
 
             $this->publishes([
-                __DIR__ . '/../resources/views' => resource_path('views/vendor/ld-tree-view'),
-            ], 'ld-tree-view-views');
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/sb-tree-view'),
+            ], 'sb-tree-view-views');
         }
     }
 }

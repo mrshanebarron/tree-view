@@ -43,6 +43,6 @@ class TreeView extends Component
 
     public function render()
     {
-        return view('ld-tree-view::livewire.tree-view');
+        return view('sb-tree-view::livewire.tree-view');
     }
 }

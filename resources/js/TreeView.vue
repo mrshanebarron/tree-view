@@ -40,7 +40,7 @@
 import { reactive } from 'vue';
 
 export default {
-  name: 'LdTreeView',
+  name: 'SbTreeView',
   props: {
     nodes: { type: Array, default: () => [] },
     level: { type: Number, default: 0 },

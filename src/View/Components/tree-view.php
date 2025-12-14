@@ -13,6 +13,6 @@ class tree-view extends Component
 
     public function render()
     {
-        return view('ld-tree-view::components.tree-view');
+        return view('sb-tree-view::components.tree-view');
     }
 }

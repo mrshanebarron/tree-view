@@ -1,5 +1,5 @@
 <?php
 
 return [
-    // Default settings for ld-tree-view
+    // Default settings for sb-tree-view
 ];
