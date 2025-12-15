@@ -4,8 +4,7 @@ namespace MrShaneBarron\TreeView;
 
 use Illuminate\Support\ServiceProvider;
 use MrShaneBarron\TreeView\Livewire\TreeView;
-use MrShaneBarron\TreeView\View\Components\tree-view as BladeTreeView;
-use Livewire\Livewire;
+use MrShaneBarron\TreeView\View\Components\TreeView as BladeTreeView;
 
 class TreeViewServiceProvider extends ServiceProvider
 {
@@ -18,7 +17,9 @@ class TreeViewServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-tree-view');
 
-        Livewire::component('sb-tree-view', tree-view::class);
+        if (class_exists(\Livewire\Livewire::class)) {
+            \Livewire\Livewire::component('sb-tree-view', TreeView::class);
+        }
 
         $this->loadViewComponentsAs('ld', [
             BladeTreeView::class,

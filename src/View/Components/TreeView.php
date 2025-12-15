@@ -1,10 +1,10 @@
 <?php
 
-namespace MrShaneBarron\tree-view\View\Components;
+namespace MrShaneBarron\TreeView\View\Components;
 
 use Illuminate\View\Component;
 
-class tree-view extends Component
+class TreeView extends Component
 {
     public function __construct()
     {
