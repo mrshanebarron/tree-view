@@ -1,41 +1,40 @@
 @php
     $hasChildren = isset($item['children']) && count($item['children']) > 0;
-    $isExpanded = in_array($item['id'], $expanded);
-    $isSelected = $selected === $item['id'];
+    $isExpanded = in_array($item['id'], $this->expanded);
+    $isSelected = $this->selected === $item['id'];
 @endphp
 
-<div style="padding-left: {{ $level * 16 }}px">
-    <div @class([
-        'flex items-center gap-2 py-1.5 px-2 rounded-lg cursor-pointer transition-colors',
-        'bg-blue-50 text-blue-700' => $isSelected,
-        'hover:bg-gray-100' => !$isSelected,
-    ])>
+<div style="padding-left: {{ $level * 16 }}px;">
+    <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; cursor: pointer; transition: background-color 0.15s; {{ $isSelected ? 'background: #eff6ff; color: #1d4ed8;' : '' }}"
+        onmouseover="if(!{{ $isSelected ? 'true' : 'false' }}) this.style.background='#f3f4f6'"
+        onmouseout="if(!{{ $isSelected ? 'true' : 'false' }}) this.style.background='transparent'"
+    >
         @if($hasChildren)
-            <button wire:click="toggle('{{ $item['id'] }}')" class="p-0.5 hover:bg-gray-200 rounded">
-                <svg class="w-4 h-4 text-gray-500 transition-transform {{ $isExpanded ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button wire:click="toggle('{{ $item['id'] }}')" style="padding: 2px; background: transparent; border: none; border-radius: 4px; cursor: pointer;">
+                <svg style="width: 16px; height: 16px; color: #6b7280; transition: transform 0.15s; {{ $isExpanded ? 'transform: rotate(90deg);' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
         @else
-            <span class="w-5"></span>
+            <span style="width: 20px;"></span>
         @endif
 
-        @if($showIcons)
+        @if($this->showIcons)
             @if($hasChildren)
-                <svg class="w-4 h-4 {{ $isExpanded ? 'text-yellow-500' : 'text-yellow-600' }}" fill="currentColor" viewBox="0 0 20 20">
+                <svg style="width: 16px; height: 16px; color: {{ $isExpanded ? '#eab308' : '#ca8a04' }};" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
                 </svg>
             @else
-                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg style="width: 16px; height: 16px; color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
             @endif
         @endif
 
-        <span wire:click="select('{{ $item['id'] }}')" class="flex-1">{{ $item['label'] }}</span>
+        <span wire:click="select('{{ $item['id'] }}')" style="flex: 1;">{{ $item['label'] }}</span>
 
         @if(isset($item['badge']))
-            <span class="px-2 py-0.5 text-xs bg-gray-200 rounded-full">{{ $item['badge'] }}</span>
+            <span style="padding: 2px 8px; font-size: 12px; background: #e5e7eb; border-radius: 9999px;">{{ $item['badge'] }}</span>
         @endif
     </div>
 
