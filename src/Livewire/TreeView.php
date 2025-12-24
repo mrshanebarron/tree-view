@@ -11,10 +11,22 @@ class TreeView extends Component
     public ?string $selected = null;
     public bool $showIcons = true;
 
+    public function mount(
+        array $items = [],
+        array $expanded = [],
+        ?string $selected = null,
+        bool $showIcons = true
+    ): void {
+        $this->items = $items;
+        $this->expanded = $expanded;
+        $this->selected = $selected;
+        $this->showIcons = $showIcons;
+    }
+
     public function toggle(string $id): void
     {
         if (in_array($id, $this->expanded)) {
-            $this->expanded = array_diff($this->expanded, [$id]);
+            $this->expanded = array_values(array_diff($this->expanded, [$id]));
         } else {
             $this->expanded[] = $id;
         }
@@ -23,6 +35,7 @@ class TreeView extends Component
     public function select(string $id): void
     {
         $this->selected = $id;
+        $this->dispatch('item-selected', id: $id);
     }
 
     public function render()
